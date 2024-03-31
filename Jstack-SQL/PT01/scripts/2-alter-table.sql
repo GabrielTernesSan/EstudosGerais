@@ -1,0 +1,3 @@
+\c live023
+
+ALTER TABLE Customers ADD COLUMN Email VARCHAR(150);
