@@ -12,7 +12,17 @@
 -- INSERT INTO Customers (Email, FirstName, LastName)
 -- VALUES ('rose.emailTest@gmail.com', 'Rose', 'Silva');
 
+-- INSERT INTO Customers (Email, FirstName, LastName)
+-- VALUES 
+--     ('mattuardo.emailTest@gmail.com', 'Matheus', 'Eduardo'),
+--     ('rose.emailTest@gmail.com', 'Rose', 'Silva');
+
+-- INSERT INTO Customers (Email, FirstName, LastName)
+-- VALUES
+--     ('mattuardo.emailTest@gmail.com', 'Matheus', 'Eduardo'),
+--     ('rose.emailTest@gmail.com', 'Rose', 'Silva'),
+--     ('tiago.emailTest@gmail.com', 'Tiago', 'Silva')
+-- RETURNING Id, CreatedAt;
+
 INSERT INTO Customers (Email, FirstName, LastName)
-VALUES 
-    ('mattuardo.emailTest@gmail.com', 'Matheus', 'Eduardo'),
-    ('rose.emailTest@gmail.com', 'Rose', 'Silva');
+VALUES ('rose.emailTest@gmail.com', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Silva');
