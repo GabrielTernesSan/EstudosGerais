@@ -15,7 +15,7 @@
 
 -- SELECT Amount FROM Orders ORDER BY Amount DESC LIMIT 1;
 
--- Função de Agregaçãp (Aggregate Functions)
+-- Função de Agregação (Aggregate Functions)
 SELECT 
     CustomerId,
     COUNT(Id) AS "TotalSales", 
@@ -25,4 +25,6 @@ SELECT
     ROUND(AVG(Amount), 2) AS "AvarageTicket"
 FROM Orders
 GROUP BY CustomerId
-ORDER BY CustomerId;
+-- HAVING COUNT(Id) > 1
+HAVING SUM(Amount) BETWEEN 500 AND 1000
+ORDER BY "AvarageTicket" DESC;
