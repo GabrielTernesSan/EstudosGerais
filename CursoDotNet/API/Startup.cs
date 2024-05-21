@@ -1,4 +1,5 @@
 ﻿
+using API.Mappers;
 using Microsoft.OpenApi.Models;
 
 namespace API
@@ -13,10 +14,14 @@ namespace API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Title = "Curso .NET Udemy",
+                    Title = "API",
                     Version = "v1"
                 });
             });
+
+            #region Automapper
+            services.AddAutoMapper(typeof(EntityToViewModelMapping), typeof(ViewModelToEntityMapping));
+            #endregion
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
