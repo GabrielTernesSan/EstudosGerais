@@ -1,6 +1,5 @@
 ﻿using API.Entities;
 using MongoDB.Driver;
-using NPOI.SS.Formula.Functions;
 
 namespace API.Infra
 {

@@ -1,11 +1,23 @@
 ﻿
+using API.Infra;
 using API.Mappers;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
+using API.Services;
 
 namespace API
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -18,6 +30,17 @@ namespace API
                     Version = "v1"
                 });
             });
+
+            #region [Database]
+            services.Configure<DatabaseSettings>(Configuration.GetSection(nameof(DatabaseSettings)));
+
+            services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+            #endregion
+
+            #region [DI]
+            services.AddSingleton(typeof(IMongoRepository<>), typeof(MongoRepository<>));
+            services.AddSingleton<NewsService>();
+            #endregion
 
             #region Automapper
             services.AddAutoMapper(typeof(EntityToViewModelMapping), typeof(ViewModelToEntityMapping));

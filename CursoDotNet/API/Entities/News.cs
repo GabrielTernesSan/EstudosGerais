@@ -18,6 +18,11 @@ namespace API.Entities
             Status = ChangeStatus(active);
         }
 
+        public News(string id, string hat, string title, string text, string author, string img, string link, Status active) : this(hat, title, text, author, img, link, active)
+        {
+            Id = id;
+        }
+
         private Status ChangeStatus(Status status)
         {
             switch (status)
