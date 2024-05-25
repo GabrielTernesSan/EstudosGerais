@@ -34,8 +34,7 @@ namespace API.Services
 
         public void Update(string id, NewsViewModel request)
         {
-            var entity = new News(id, request.Hat, request.Title, request.Text, request.Author, request.Img, request.Link, request.Status);
-            _mongoRepository.Update(id, _mapper.Map<News>(entity));
+            _mongoRepository.Update(id, _mapper.Map<News>(request));
         }
 
         public void Remove(string id) => _mongoRepository.Remove(id);

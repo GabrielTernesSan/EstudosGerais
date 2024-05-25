@@ -8,7 +8,7 @@ namespace API.Mappers
     {
         public ViewModelToEntityMapping()
         {
-            CreateMap<NewsViewModel, News>();
+            CreateMap<NewsViewModel, News>().ConstructUsing(x => new News(x.Id, x.Hat, x.Title, x.Text, x.Author, x.Img, x.Link, x.Status));
         }
     }
 }
