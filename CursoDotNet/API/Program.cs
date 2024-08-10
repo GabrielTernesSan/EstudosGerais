@@ -15,6 +15,5 @@ namespace Estoque.Web
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
     }
 }

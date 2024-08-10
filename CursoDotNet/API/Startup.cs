@@ -1,11 +1,9 @@
-﻿
-using API.Infra;
+﻿using API.Infra;
 using API.Mappers;
+using API.Services;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Configuration;
-using System.Configuration;
-using API.Services;
 
 namespace API
 {
@@ -57,12 +55,22 @@ namespace API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Curso .NET Udemy v1"));
             }
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "Imagens")),
+                RequestPath = "/img"
+            });
+
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
