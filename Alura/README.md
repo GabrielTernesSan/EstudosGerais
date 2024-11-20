@@ -29,3 +29,11 @@ _Insert_: O método `Insert()` permite que você insira um elemento em uma posi�
 Essas operações não são diretamente parte do LINQ, mas são métodos disponíveis nas coleções que podem ser utilizados em conjunto com LINQ.
 
 Se você estiver utilizando métodos LINQ, como `Select()`, `Where()`, `OrderBy()`, entre outros, eles não alteram a coleção original, mas sim retornam uma nova sequência.
+
+### List vs LinkedList
+
+_Lists_: Utilizam um array (vetor) por debaixo dos panos. Para inserir um novo elemento, é necessário ter um espaço contínuo na memória. Se não houver espaço suficiente, a lista precisa ser realocada, o que pode ser custoso em termos de desempenho. Além disso, inserir um elemento em uma posição específica envolve mover todos os elementos subsequentes, o que também pode ser trabalhoso.
+
+_LinkedLists_: Cada elemento (nó) pode estar em locais distintos da memória, pois cada um possui um ponteiro que indica o próximo elemento. Isso facilita a inserção de novos elementos no meio da lista, pois apenas as referências dos nós precisam ser alteradas. No entanto, para inserir um elemento no final da lista, é necessário percorrer toda a lista, o que pode ser mais lento.
+
+_Bidirecionalidade_: As LinkedLists podem ser bidirecionais, onde cada nó aponta tanto para o próximo quanto para o anterior, permitindo navegação em ambas as direções.
