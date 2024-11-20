@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace UsuarioLib;
+﻿namespace UsuarioLib;
 
 public class Usuario
 {
