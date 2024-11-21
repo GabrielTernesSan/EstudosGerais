@@ -37,3 +37,25 @@ _Lists_: Utilizam um array (vetor) por debaixo dos panos. Para inserir um novo e
 _LinkedLists_: Cada elemento (nó) pode estar em locais distintos da memória, pois cada um possui um ponteiro que indica o próximo elemento. Isso facilita a inserção de novos elementos no meio da lista, pois apenas as referências dos nós precisam ser alteradas. No entanto, para inserir um elemento no final da lista, é necessário percorrer toda a lista, o que pode ser mais lento.
 
 _Bidirecionalidade_: As LinkedLists podem ser bidirecionais, onde cada nó aponta tanto para o próximo quanto para o anterior, permitindo navegação em ambas as direções.
+
+### Structs
+
+`Structs` são tipos de dados que permitem agrupar diferentes tipos de informações em uma única entidade. No .NET, as structs são consideradas tipos de valor, o que significa que elas são armazenadas na `stack`, ao contrário das classes, que são tipos de referência e são armazenadas na `heap`.
+
+Algumas características importantes das structs incluem:
+
+_Simplicidade:_ As `structs` são geralmente mais simples e leves do que as `classes`, sendo ideais para representar dados que não precisam de uma lógica complexa.
+
+_Alocação de Memória:_ Como são armazenadas na `stack`, as `structs` podem oferecer melhor performance em termos de alocação e acesso à memória, especialmente em operações que envolvem a criação de muitas instâncias.
+
+_Sem Herança:_ As `structs` não suportam herança como as `classes`, mas podem implementar interfaces.
+
+_Imutabilidade:_ É comum que as `structs` sejam definidas como imutáveis, ou seja, seus valores não mudam após a criação. Isso ajuda a evitar efeitos colaterais indesejados.
+
+_Menor Conjunto de Métodos:_ As `structs` têm um conjunto mais limitado de métodos em comparação com as `classes`, pois herdam de `System.ValueType`, que possui menos métodos do que `System.Object`.
+
+_Boxing e Unboxing:_ Quando uma `struct` é tratada como um objeto (por exemplo, ao ser atribuída a uma variável do tipo de uma interface), ocorre o processo de boxing, que envolve a criação de uma caixa na `heap`. Isso pode impactar negativamente a performance, especialmente se feito repetidamente em loops.
+
+_Construtores:_ Não é possível criar um construtor vazio para uma `struct`. Isso pode ser uma limitação em cenários onde um construtor padrão é necessário para inicializar objetos.
+
+_Tamanho e Cópia:_ Como `structs` são tipos de valor, quando você passa uma `struct` para um método ou a atribui a outra variável, uma cópia completa da `struct` é feita. Isso pode ser ineficiente se a `struct` for grande, resultando em maior uso de memória e tempo de processamento.
