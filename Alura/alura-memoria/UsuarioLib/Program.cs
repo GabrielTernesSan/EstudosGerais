@@ -1,11 +1,10 @@
-﻿using System.Diagnostics;
-using UsuarioLib;
+﻿using UsuarioLib;
 
-//Usuario usuario = 
-//    new Usuario(
-//        "Daniel", 
-//        "daniel@email.com",
-//        new List<string>() {"12345678"});
+Usuario usuario = 
+    new Usuario(
+        "Daniel", 
+        "daniel@email.com",
+        new List<string>() {"12345678"});
 
 
 //12345678
@@ -29,5 +28,6 @@ dto2.Idade = 24;
 dto2.Cargo = "Programador Backend";
 dto2.Cpf = "11111111111111";
 
-//False pois eles tem ponteiros apontando para endereços diferente na memória Heap
+//False(quando classe) pois eles tem ponteiros apontando para endereços diferente na memória Heap
+//True(quando record)  porque os records são projetados para comparar seus valores em vez de suas referências de memória.
 Console.WriteLine(dto == dto2);
