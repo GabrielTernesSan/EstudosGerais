@@ -1,10 +1,7 @@
 ﻿namespace UsuarioLib
 {
-    public record FormularioDto
+    public record FormularioDto(string Nome, string Cpf, string Cargo)
     {
-        public string Nome { get; set; }
-        public string Cpf { get; set; }
-        public int Idade { get; set; }
-        public string Cargo { get; set; }
+        public int Idade { get; set; } // Mutável
     }
 }
