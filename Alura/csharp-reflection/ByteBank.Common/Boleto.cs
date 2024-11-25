@@ -15,6 +15,7 @@
 
         // Informações do Boleto
         public decimal Valor { get; set; }
+        public decimal Multa { get; set; }
         public DateTime DataVencimento { get; set; }
         public string NumeroDocumento { get; set; }
         public string NossoNumero { get; set; }
