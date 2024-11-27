@@ -53,3 +53,13 @@ Esta etapa é onde rodamos de fato o nosso teste. Chamamos alguma função ou m�
 #### 3ª Assert
 
 Esta etapa é onde faremos nosso assert. É onde verificamos se a operação realizada na etapa anterior (Act) surtiu o resultado esperado. Assim sabemos se o teste passa ou falha.
+
+### Padrão Give, Then, When
+
+O padrão Give-When-Then ajuda a estruturar os testes de maneira bem clara e compreensível seguindo uma abordagem descritiva que informa o comportamento esperado de um sistema em termos de entrada (give), ação (when) e saída (then). Nessas etapas temos:
+
+_Give_: fase onde é configurado o cenário para o teste;
+_When_: fase onde é executada a ação que se deseja testar;
+_Then_: fase onde é verificado o resultado da ação anterior.
+
+Os dois padrões são bem parecidos, porém possuem algumas diferenças básicas: por exemplo, o padrão AAA é mais focado na estruturação do teste em termos de organização do código e na execução do teste em si, destacando a preparação do ambiente de teste, a execução da ação e a verificação do resultado. Já o padrão Give-When-Then é mais orientado ao comportamento e coloca mais ênfase na descrição do comportamento do sistema em termos de entradas e saídas.
