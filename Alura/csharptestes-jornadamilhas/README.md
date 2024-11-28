@@ -63,3 +63,17 @@ _When_: fase onde é executada a ação que se deseja testar;
 _Then_: fase onde é verificado o resultado da ação anterior.
 
 Os dois padrões são bem parecidos, porém possuem algumas diferenças básicas: por exemplo, o padrão AAA é mais focado na estruturação do teste em termos de organização do código e na execução do teste em si, destacando a preparação do ambiente de teste, a execução da ação e a verificação do resultado. Já o padrão Give-When-Then é mais orientado ao comportamento e coloca mais ênfase na descrição do comportamento do sistema em termos de entradas e saídas.
+
+### O que é um caso de teste?
+
+A especificação detalhada que descreve as condições, entradas, procedimentos e resultados esperados para verificar se um determinado componente do sistema está funcionando corretamente é chamada de caso de teste.
+
+O caso de teste é uma parte fundamental do processo de teste de software e é elaborado durante a fase de planejamento dos testes, seus principais elementos são:
+
+- _Identificação do caso de teste_ - cada caso de teste deve ter um identificador único, que pode ser um nome descritivo, por exemplo;
+- _Descrição_ - uma descrição concisa do que o caso de teste está testando;
+- _Pré-condições_ - as condições ou estados que devem ser verdadeiros antes que o caso de teste possa ser executado com sucesso;
+- _Entradas_ - os dados de entrada necessários para executar o caso de teste;
+- _Passos de execução_ - uma lista detalhada das etapas que devem ser seguidas para executar o caso de teste;
+- _Resultados esperados_ - os resultados específicos que são esperados após a execução bem-sucedida do caso de teste;
+- _Critérios de aceitação_ - critérios claros que determinam se o caso de teste foi aprovado ou reprovado.
