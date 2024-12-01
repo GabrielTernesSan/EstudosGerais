@@ -77,3 +77,140 @@ O caso de teste é uma parte fundamental do processo de teste de software e é e
 - _Passos de execução_ - uma lista detalhada das etapas que devem ser seguidas para executar o caso de teste;
 - _Resultados esperados_ - os resultados específicos que são esperados após a execução bem-sucedida do caso de teste;
 - _Critérios de aceitação_ - critérios claros que determinam se o caso de teste foi aprovado ou reprovado.
+
+## XUnit - Conceitos básicos
+
+No xUnit precisamos decorar os métodos de teste com o atributo [Fact], que é usado pelo xUnit para marcar os métodos de testes. Além dos métodos de testes, também podemos ter vários métodos auxiliares na classe de teste.
+
+Com o XUnit para tornar um método comum em método de testes basta adicionar [Fact] ou [Theory] acima de sua assinatura, os atributos diferem apenas no seguinte, para testes sem parâmetros deve-se usar [Fact], para testes como parâmetros utiliza-se o [Theory].
+
+O atributo [Theory] indica um teste parametrizado que é verdadeiro para um subconjunto de dados. Esses dados podem ser fornecidos de várias maneiras, mas o mais comum é com um atributo [InlineData]. Assim este atributo permite executar um método de teste várias vezes passando diferentes valores a cada vez como parâmetros.
+
+Podemos ainda desativar um teste por qualquer motivo. Para isso basta definir a propriedade Skip no atributo Fact com o motivo que você desativou o teste (o motivo não é exibido).
+
+```csharp
+    [Fact(Skip = "Teste ainda não disponível")]
+    public void Teste()
+    { }
+```
+
+Á medida que o número de seus testes aumenta, você pode organizá-los em grupos para que poder executar os testes juntos. O atributo [Trait] permite organizar os testes em grupos, criando nomes de categoria e atribuindo valores a eles.
+
+```csharp
+    [Fact(DisplayName = "Teste Numero 2")]
+    [Trait("Calculo", "Somar")]
+    public void Somar_DoisNumeros_RetornaNumero()
+    { }
+```
+
+### Outras Annotations do XUnit
+
+#### [ClassData]
+
+Permite carregar dados para testes a partir de uma classe.
+
+```csharp
+public class MathTestData : IEnumerable<object[]>
+{
+    public IEnumerator<object[]> GetEnumerator()
+    {
+        yield return new object[] { 1, 1, 2 };
+        yield return new object[] { 2, 2, 4 };
+        yield return new object[] { 5, 3, 8 };
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+}
+
+public class MathTests
+{
+    [Theory]
+    [ClassData(typeof(MathTestData))]
+    public void Add_ShouldReturnCorrectSum(int a, int b, int expected)
+    {
+        // Act
+        int result = a + b;
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+}
+```
+
+#### [Collection]
+
+Define uma coleção de testes que compartilham o mesmo contexto ou configuração, ideal para evitar recriação de dependências.
+
+```csharp
+[CollectionDefinition("Shared Context")]
+public class SharedContextCollection : ICollectionFixture<DatabaseFixture>
+{
+}
+
+[Collection("Shared Context")]
+public class DatabaseTests
+{
+    private readonly DatabaseFixture _fixture;
+
+    public DatabaseTests(DatabaseFixture fixture)
+    {
+        _fixture = fixture;
+    }
+
+    [Fact]
+    public void TestDatabaseConnection()
+    {
+        Assert.NotNull(_fixture.Connection);
+    }
+}
+
+public class DatabaseFixture : IDisposable
+{
+    public string Connection { get; private set; }
+
+    public DatabaseFixture()
+    {
+        Connection = "Database Connected";
+    }
+
+    public void Dispose()
+    {
+        Connection = null;
+    }
+}
+```
+
+#### [Trait]
+
+Adiciona categorias ou metadados a testes, úteis para filtros.
+
+```csharp
+public class MathTests
+{
+    [Fact]
+    [Trait("Category", "Math")]
+    public void Add_ShouldReturnCorrectSum()
+    {
+        // Act
+        int result = 1 + 1;
+
+        // Assert
+        Assert.Equal(2, result);
+    }
+}
+```
+
+#### [Skip]
+
+Pode ser usado junto com [Fact] ou [Theory] para pular testes.
+
+```csharp
+public class MathTests
+{
+    [Fact(Skip = "Teste não implementado ainda.")]
+    public void Subtract_ShouldReturnCorrectDifference()
+    {
+        // Test logic
+    }
+}
+```
