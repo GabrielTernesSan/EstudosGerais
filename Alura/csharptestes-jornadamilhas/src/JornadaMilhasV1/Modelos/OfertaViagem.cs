@@ -21,7 +21,7 @@ public class OfertaViagem : Valida
             {
                 Preco *= Math.Round(1 - DESCONTO_MAXIMO, 2);
             }
-            else
+            else if (desconto > 0)
             {
                 Preco -= desconto;
             }

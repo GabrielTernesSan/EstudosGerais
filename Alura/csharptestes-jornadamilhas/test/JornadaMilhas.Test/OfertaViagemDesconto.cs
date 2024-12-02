@@ -41,5 +41,24 @@ namespace JornadaMilhas.Test
             // Assert
             Assert.Equal(precoComDesconto, oferta.Preco);
         }
+
+        [Fact]
+        public void RetornaPrecoOriginalQuandoDescontoMenorIgualAZero()
+        {
+            // Arrange
+            Rota rota = new Rota("OrigemTeste", "DestinoTeste");
+            Periodo periodo = new Periodo(new DateTime(2024, 05, 5), new DateTime(2024, 05, 10));
+            double precoOriginal = 100.0;
+            double desconto = -120.0;
+            double precoComDesconto = precoOriginal;
+
+            OfertaViagem oferta = new OfertaViagem(rota, periodo, precoOriginal);
+
+            // Act
+            oferta.Desconto = desconto;
+
+            // Assert
+            Assert.Equal(precoComDesconto, oferta.Preco);
+        }
     }
 }
