@@ -214,3 +214,14 @@ public class MathTests
     }
 }
 ```
+## TDD (Test-Driven Development)
+
+TDD, ou "Test-Driven Development" (em português, Desenvolvimento Orientado a Testes), é uma abordagem de desenvolvimento de software que enfatiza a criação de testes automatizados antes da implementação do código de produção. O processo TDD segue um ciclo iterativo e incremental, composto por três etapas principais: Red, Green, e Refactor.
+
+_Red (Vermelho):_ Nesta fase, você escreve um teste automatizado que captura uma pequena parte do comportamento desejado do sistema. No entanto, o código de produção ainda não foi implementado, então o teste deve falhar (ficar "vermelho").
+
+_Green (Verde):_ Agora, o objetivo é fazer com que o teste escrito na fase anterior passe. Você implementa apenas o código necessário para que o teste automatizado tenha êxito. O foco é escrever o código mínimo necessário para atender aos requisitos do teste.
+
+_Refactor (Refatorar):_ Com o teste passando, você pode refatorar o código para melhorar sua qualidade, eficiência e legibilidade. O objetivo é garantir que o código continue atendendo aos requisitos, mas agora de uma maneira mais clara e eficiente.
+
+O ciclo Red-Green-Refactor é repetido várias vezes ao longo do desenvolvimento do software. Cada iteração adiciona pequenos incrementos de funcionalidade ao sistema (conhecidos como baby steps) e garante que as alterações não quebrem o que já foi implementado. Isso ajuda a manter o código sempre em um estado funcional e facilita a detecção rápida de erros.
