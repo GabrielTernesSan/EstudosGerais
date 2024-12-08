@@ -56,10 +56,12 @@ public class GerenciadorDeOfertas
             ofertaViagem.Add(ofertaCadastrada);
             return true;
         }
-        return false;
 
+        return false;
     }
 
+    public OfertaViagem? RecuperaMaiorDesconto(Func<OfertaViagem, bool> filtro) 
+        => ofertaViagem.FirstOrDefault();
 
     public void CarregarOfertas()
     {
