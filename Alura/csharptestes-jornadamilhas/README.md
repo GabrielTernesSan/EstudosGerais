@@ -240,3 +240,16 @@ _Execução dos testes:_ Depois que as mutações são introduzidas no código-f
 _Análise dos resultados:_ Os resultados dos testes de mutação são analisados para determinar a eficácia dos testes existentes. Se um grande número de mutações não são detectadas pelos testes, isso sugere que há lacunas na cobertura de teste e que os testes podem não ser robustos o suficiente para detectar todas as variações no comportamento do código.
 
 _Refinamento dos testes:_ Com base nos resultados da análise, as pessoas desenvolvedoras podem refinar os testes de unidade existentes ou adicionar novos testes para melhorar a cobertura e garantir que o código seja mais robusto contra alterações.
+
+# Desafio
+
+Coloque seus conhecimentos em prática! Agora é a hora de reforçar suas habilidades sobre testes de unidade!
+
+Para fins didáticos, ressaltamos o desenvolvimento dos testes focados na classe OfertaViagem. Porém, em um cenário real, precisamos testar toda nossa aplicação para garantir o funcionamento de todo o sistema.
+
+Então sua tarefa é utilizar tudo que você aprendeu durante esse curso, e também suas habilidades de pesquisa, para implementar os testes em toda aplicação, garantindo assim uma maior cobertura de testes e maior qualidade do sistema.
+
+Para isso, temos um caminho para você seguir:
+
+Criar testes de unidade que validem o modelo Rota verificando, por exemplo, se a rota é válida e se a verificação de rota inválida gera erros como o esperado;
+Criar testes de unidade que validem o modelo Período verificando especificamente suas particularidades de validação.
