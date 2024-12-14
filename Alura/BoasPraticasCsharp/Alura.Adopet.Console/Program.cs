@@ -7,14 +7,15 @@ HttpClient client = ConfiguraHttpClient("http://localhost:5057");
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
-    // args[0] é o comando a ser executado pelo programa
-    switch (args[0].Trim())
+    string comando = args[0].Trim();
+    switch (comando)
     {
         case "import":
             List<Pet> listaDePet = new List<Pet>();
 
-            // args[1] é o caminho do arquivo a ser importado
-            using (StreamReader sr = new StreamReader(args[1]))
+            string caminhoDoArquivoDeimpportacao = args[1];
+
+            using (StreamReader sr = new StreamReader(caminhoDoArquivoDeimpportacao))
             {
                 while (!sr.EndOfStream)
                 {
@@ -30,6 +31,7 @@ try
                     listaDePet.Add(pet);
                 }
             }
+
             foreach (var pet in listaDePet)
             {
                 try
@@ -41,10 +43,14 @@ try
                     Console.WriteLine(ex.Message);
                 }
             }
+
             Console.WriteLine("Importação concluída!");
+
             break;
         case "help":
+
             Console.WriteLine("Lista de comandos.");
+
             // se não passou mais nenhum argumento mostra help de todos os comandos
             if (args.Length == 1)
             {
@@ -60,21 +66,26 @@ try
             // exibe o help daquele comando específico
             else if (args.Length == 2)
             {
-                if (args[1].Equals("import"))
+                string comandoASerExibido = args[1];
+
+                if (comandoASerExibido.Equals("import"))
                 {
                     Console.WriteLine(" adopet import <arquivo> " +
                         "comando que realiza a importação do arquivo de pets.");
                 }
-                if (args[1].Equals("show"))
+                if (comandoASerExibido.Equals("show"))
                 {
                     Console.WriteLine(" adopet show <arquivo>  comando que " +
                         "exibe no terminal o conteúdo do arquivo importado.");
                 }
             }
+
             break;
         case "show":
-            // args[1] é o caminho do arquivo a ser exibido
-            using (StreamReader sr = new StreamReader(args[1]))
+
+            string caminhoDoArquivoASerExibido = args[1];
+
+            using (StreamReader sr = new StreamReader(caminhoDoArquivoASerExibido))
             {
                 Console.WriteLine("----- Serão importados os dados abaixo -----");
                 while (!sr.EndOfStream)
@@ -89,13 +100,17 @@ try
                     Console.WriteLine(pet);
                 }
             }
+
             break;
         case "list":
+
             var pets = await ListPetsAsync();
+
             foreach(var pet in pets)
             {
                 Console.WriteLine(pet);
             }
+
             break;
         default:
             // exibe mensagem de comando inválido
