@@ -5,9 +5,9 @@ public class OfertaViagemDAL
 {
     private readonly JornadaMilhasContext context;
 
-    public OfertaViagemDAL()
+    public OfertaViagemDAL(JornadaMilhasContext context)
     {
-        context = new JornadaMilhasContext();
+        this.context = context;
     }
 
     public void Adicionar(OfertaViagem oferta)

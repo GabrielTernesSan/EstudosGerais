@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace JornadaMilhas.Dados;
-public class JornadaMilhasContext: DbContext
+public class JornadaMilhasContext : DbContext
 {
     public DbSet<OfertaViagem> OfertasViagem { get; set; }
     public DbSet<Rota> Rotas { get; set; }
@@ -13,8 +13,10 @@ public class JornadaMilhasContext: DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder
-            .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=JornadaMilhasTest;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=JornadaMilhas;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
