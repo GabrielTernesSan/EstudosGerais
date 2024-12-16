@@ -1,8 +1,21 @@
-﻿namespace Alura.Adopet.Console
+﻿using System.Reflection;
+
+namespace Alura.Adopet.Console
 {
-    [DocComando(instrucao: "help", documentacao: "adopet help comando que exibe informações da ajuda.")]
+    [DocComando(instrucao: "help", documentacao: "adopet help comando que exibe informações da ajuda. \n" +
+        "Execute 'adopet.exe help [comando]' para obter mais informações sobre um comando.")]
     public class Help
     {
+        private Dictionary<string, DocComando> docs;
+
+        public Help()
+        {
+            docs = Assembly.GetExecutingAssembly().GetTypes()
+                .Where(t => t.GetCustomAttributes<DocComando>().Any())
+                .Select(t => t.GetCustomAttribute<DocComando>()!)
+                .ToDictionary(d => d.Instrucao);
+        }
+
         public void ListarComandos(string[] argumentos)
         {
             System.Console.WriteLine("Lista de comandos.");
@@ -15,35 +28,21 @@
                 System.Console.WriteLine("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
                 System.Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
                 System.Console.WriteLine("Comando possíveis: ");
-                System.Console.WriteLine($" adopet help comando que exibe informações da ajuda.");
-                System.Console.WriteLine($" adopet import <arquivo> comando que realiza a importação do arquivo de pets.");
-                System.Console.WriteLine($" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado." + "\n\n\n\n");
-                System.Console.WriteLine($" adopet list comando que exibe no terminal o conteúdo da base de dados da AdoPet." + "\n\n\n\n");
-                System.Console.WriteLine("Execute 'adopet.exe help [comando]' para obter mais informações sobre um comando." + "\n\n\n");
+                foreach (var doc in docs.Values)
+                {
+                    System.Console.WriteLine(doc.Documentacao);
+                }
             }
             // exibe o help daquele comando específico
             else if (argumentos.Length == 2)
             {
                 string comandoASerExibido = argumentos[1];
 
-                if (comandoASerExibido.Equals("import"))
+                if (docs.ContainsKey(comandoASerExibido))
                 {
-                    System.Console.WriteLine(" adopet import <arquivo> " +
-                        "comando que realiza a importação do arquivo de pets.");
-                }
-                if (comandoASerExibido.Equals("show"))
-                {
-                    System.Console.WriteLine(" adopet show <arquivo>  comando que " +
-                        "exibe no terminal o conteúdo do arquivo importado.");
-                }
-                if (comandoASerExibido.Equals("list"))
-                {
-                    System.Console.WriteLine(" adopet list comando que exibe no terminal o conteúdo " +
-                        "da base de dados da AdoPet.");
-                }
-                if (comandoASerExibido.Equals("help"))
-                {
-                    System.Console.WriteLine(" adopet help comando que exibe informações da ajuda.");
+                    var comando = docs[comandoASerExibido];
+
+                    System.Console.WriteLine(comando.Documentacao);
                 }
             }
         }
