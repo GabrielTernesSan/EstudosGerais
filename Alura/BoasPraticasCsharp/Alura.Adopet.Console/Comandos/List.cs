@@ -1,7 +1,8 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using Alura.Adopet.Console.Modelos;
 
-namespace Alura.Adopet.Console
+namespace Alura.Adopet.Console.Comandos
 {
     [DocComando(instrucao: "list", documentacao: "adopet list comando que exibe no terminal o conteúdo da base de dados da AdoPet.")]
     public class List
@@ -10,7 +11,7 @@ namespace Alura.Adopet.Console
 
         public List()
         {
-            this.client = ConfiguraHttpClient("http://localhost:5057");
+            client = ConfiguraHttpClient("http://localhost:5057");
         }
 
         public async Task ListaPetsAsync()

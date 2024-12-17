@@ -1,4 +1,4 @@
-﻿using Alura.Adopet.Console;
+﻿using Alura.Adopet.Console.Comandos;
 
 Console.ForegroundColor = ConsoleColor.Green;
 try

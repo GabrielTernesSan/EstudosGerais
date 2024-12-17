@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Alura.Adopet.Console
+namespace Alura.Adopet.Console.Comandos
 {
     [DocComando(instrucao: "help", documentacao: "adopet help comando que exibe informações da ajuda. \n" +
         "Execute 'adopet.exe help [comando]' para obter mais informações sobre um comando.")]
