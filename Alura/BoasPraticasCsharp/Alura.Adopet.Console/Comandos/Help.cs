@@ -4,7 +4,7 @@ namespace Alura.Adopet.Console.Comandos
 {
     [DocComando(instrucao: "help", documentacao: "adopet help comando que exibe informações da ajuda. \n" +
         "Execute 'adopet.exe help [comando]' para obter mais informações sobre um comando.")]
-    public class Help
+    public class Help : IComando
     {
         private Dictionary<string, DocComando> docs;
 
@@ -16,7 +16,13 @@ namespace Alura.Adopet.Console.Comandos
                 .ToDictionary(d => d.Instrucao);
         }
 
-        public void ListarComandos(string[] argumentos)
+        public Task ExecutarAsync(string[] args)
+        {
+            ListarComandos(args);
+            return Task.CompletedTask;
+        }
+
+        private void ListarComandos(string[] argumentos)
         {
             System.Console.WriteLine("Lista de comandos.");
 

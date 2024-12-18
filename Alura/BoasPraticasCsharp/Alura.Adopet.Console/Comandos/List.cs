@@ -5,7 +5,7 @@ using Alura.Adopet.Console.Modelos;
 namespace Alura.Adopet.Console.Comandos
 {
     [DocComando(instrucao: "list", documentacao: "adopet list comando que exibe no terminal o conteúdo da base de dados da AdoPet.")]
-    public class List
+    public class List : IComando
     {
         HttpClient client;
 
@@ -14,7 +14,12 @@ namespace Alura.Adopet.Console.Comandos
             client = ConfiguraHttpClient("http://localhost:5057");
         }
 
-        public async Task ListaPetsAsync()
+        public async Task ExecutarAsync(string[] args)
+        {
+            await this.ListaPetsAsync();
+        }
+
+        private async Task ListaPetsAsync()
         {
             var pets = await ListPetsAsync();
 
