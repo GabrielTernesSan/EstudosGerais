@@ -2,18 +2,20 @@ using Alura.Adopet.Console.Servicos;
 
 namespace Alura.Adopet.Testes
 {
-    public class UnitTest1
+    public class HttpClientPetTest
     {
         [Fact]
-        public void Test1()
+        public async Task ListaPetsDeveRotornarUmaListaNaoVazia()
         {
             //Arrange
             var clientePet = new HttpClientPet();
 
             //Act
-
+            var lista = await clientePet.ListPetsAsync();
 
             //Assert
+            Assert.NotNull(lista);
+            Assert.NotEmpty(lista);
         }
     }
 }
