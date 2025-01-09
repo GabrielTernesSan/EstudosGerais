@@ -13,7 +13,6 @@ namespace JornadaMilhas.Test.Integracao
         private readonly MsSqlContainer _msSqlContainer = new MsSqlBuilder()
             .WithImage("mcr.microsoft.com/mssql/server:2019-latest")
             .WithPortBinding(1433, true)
-            .WithPassword("Test123!")
             .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(1433))
             .Build();
 
