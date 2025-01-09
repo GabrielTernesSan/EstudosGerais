@@ -23,18 +23,13 @@ namespace JornadaMilhas.Test.Integracao
         public void RetornaOfertaEspecificaQuandoDestinoSaoPauloEDesconto40()
         {
             //arrange
-            var fakerPeriodo = new Faker<Periodo>()
-                .CustomInstantiator(f =>
-                {
-                    DateTime dataInicio = f.Date.Soon();
-                    return new Periodo(dataInicio, dataInicio.AddDays(30));
-                });
+            var fakerPeriodo = new PeriodoDataBuilder() { DataInicial = new DateTime(2024, 5,20)}.Build();
 
             var rota = new Rota("Curitiba", "São Paulo");
 
             Fixture.CriaDadosFake();
 
-            var ofertaEscolhida = new OfertaViagem(rota, fakerPeriodo.Generate(), 80)
+            var ofertaEscolhida = new OfertaViagem(rota, fakerPeriodo, 80)
             {
                 Desconto = 40,
                 Ativa = true
