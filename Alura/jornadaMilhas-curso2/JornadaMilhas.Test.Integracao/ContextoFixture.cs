@@ -32,13 +32,9 @@ namespace JornadaMilhas.Test.Integracao
 
         public void CriaDadosFake()
         {
-            Periodo periodo = new PeriodoDataBuilder().Build();
-
-            var rota = new Rota("Curitiba", "São Paulo");
-
             var fakerOferta = new Faker<OfertaViagem>()
                     .CustomInstantiator(f => new OfertaViagem(
-                            rota,
+                            new RotaDataBuilder().Build(),
                             new PeriodoDataBuilder().Build(),
                             100 * f.Random.Int(1, 100))
                     )
@@ -50,6 +46,16 @@ namespace JornadaMilhas.Test.Integracao
             Context.OfertasViagem.AddRange(lista);
             Context.SaveChanges();
         }
+
+        public async Task LimpaDadosDoBanco()
+        {
+            //Context.OfertasViagem.RemoveRange(Context.OfertasViagem);
+            //Context.Rotas.RemoveRange(Context.Rotas);
+            //await Context.SaveChangesAsync();
+
+            Context.Database.ExecuteSqlRaw("DELETE FROM OfertasViagem");
+            Context.Database.ExecuteSqlRaw("DELETE FROM Rotas");
+        } 
 
         public async Task DisposeAsync()
         {
