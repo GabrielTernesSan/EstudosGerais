@@ -3,6 +3,7 @@ using Alura.Adopet.Console.Servicos;
 using Moq;
 using Moq.Protected;
 using System.Net;
+using System.Net.Sockets;
 
 namespace Alura.Adopet.Testes
 {
@@ -81,11 +82,22 @@ namespace Alura.Adopet.Testes
         public async Task QuandoAPIForaDeveRetornarUmaExcecao()
         {
             //Arrange
-            //var clientePet = new HttpClientPet(uri:"http://localhost:1111");
+            var handlerMock = new Mock<HttpMessageHandler>();
+
+            handlerMock
+               .Protected()
+               .Setup<Task<HttpResponseMessage>>(
+                  "SendAsync",
+                  ItExpr.IsAny<HttpRequestMessage>(),
+                  ItExpr.IsAny<CancellationToken>())
+               .ThrowsAsync(new SocketException());
+
+            var httpClient = new Mock<HttpClient>(MockBehavior.Default, handlerMock.Object);
+            httpClient.Object.BaseAddress = new Uri("http://localhost:5057");
+            var clientePet = new HttpClientPet(httpClient.Object);
 
             ////Act+Assert
-            //await Assert.ThrowsAnyAsync<Exception>(()=> clientePet.ListPetsAsync());
-
+            await Assert.ThrowsAnyAsync<Exception>(() => clientePet.ListPetsAsync());
         }
 
     }
