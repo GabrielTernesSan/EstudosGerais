@@ -12,7 +12,7 @@ namespace JornadaMilhas.Integration.Test.API
             // Arrange
             var app = new JornadaMilhasWebApplicationFactory();
 
-            using var client = app.CreateClient();
+            using var client = await app.GetClientWithAccessTokenAsync();
             
             var ofertaViagem = new
             {
